@@ -10,7 +10,7 @@ catch (e) {
 var conf = {
     salt: 'ourmotherfuckingsecretcode',
     eventname: 'tallinn20180611',
-    linksCount: 32,
+    linksCount: 512,
     claimurl: 'https://fervent-panini-45fa4b.netlify.com?claim='
 }
 
