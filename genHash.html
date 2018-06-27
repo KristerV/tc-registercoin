@@ -1,5 +1,12 @@
 <body>
-    <p>Generating hashes</p>
-    <ul></ul>
+    <p>Not production ready! Salt is hardcoded.</p>
+    <p><span class="qrstatus">Generator not started.</span> <span class="qrcount"></span></p>
+    <div id="qrcodes"></div>
+    <script src="lib/qrjs2.min.js"></script>
     <script src="genHash.js"></script>
+    <style>
+        #qrcodes svg {
+            width: 33%;
+        }
+    </style>
 </body>
