@@ -8,9 +8,9 @@ catch (e) {
 }
 
 var conf = {
-    keyword: 'ourmotherfuckingsecretcode',
+    salt: 'ourmotherfuckingsecretcode',
     eventname: 'tallinn20180611',
-    tickets: 32,
+    linksCount: 32,
     claimurl: 'https://fervent-panini-45fa4b.netlify.com?claim='
 }
 
@@ -18,9 +18,9 @@ async function start() {
     updateStatus('Generating QR codes...')
     var generatedHashes = []
     const parentDiv = document.querySelector('#qrcodes')
-    for (var i = 0; i < conf.tickets; i++) {
+    for (var i = 0; i < conf.linksCount; i++) {
         updateCount(i)
-        var code = conf.keyword + conf.eventname + i
+        var code = conf.salt + conf.eventname + i
         var hash = await getHash(code)
         generatedHashes.push(hash)
 
@@ -33,7 +33,7 @@ async function start() {
         parentDiv.appendChild(element)
         document.body.appendChild(parentDiv)
     }
-    updateCount(conf.tickets)
+    updateCount(conf.linksCount)
     updateStatus('Done')
 
 }
@@ -50,7 +50,7 @@ function updateStatus(msg, count) {
 }
 
 function updateCount(count) {
-    document.querySelector('.qrcount').innerHTML = `(${count}/${conf.tickets})`
+    document.querySelector('.qrcount').innerHTML = `(${count}/${conf.linksCount})`
 }
 
 start()
