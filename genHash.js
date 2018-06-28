@@ -16,22 +16,21 @@ var conf = {
 
 async function start() {
     updateStatus('Generating QR codes...')
-    var generatedHashes = []
     const parentDiv = document.querySelector('#qrcodes')
     for (var i = 0; i < conf.linksCount; i++) {
         updateCount(i)
         var code = conf.salt + conf.eventname + i
         var hash = await getHash(code)
-        generatedHashes.push(hash)
 
-        const element = QRCode.generateSVG(conf.claimurl + hash, {
-            fillcolor: "#fff",
-            textcolor: "#000",
-            margin: 4,
-            modulesize: 8
-        })
-        parentDiv.appendChild(element)
-        document.body.appendChild(parentDiv)
+        var qr = new VanillaQR({
+            url: conf.claimurl + hash,
+            size: 320,
+            colorLight: "#fff",
+            colorDark: "#000",
+            noBorder: true, //Use a border or not
+        });
+
+        parentDiv.appendChild(qr.domElement)
     }
     updateCount(conf.linksCount)
     updateStatus('Done')
